@@ -32,7 +32,7 @@ public class Register2 {
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);   */
 		
-			int browser = 3;
+			int browser = 2;
 			
 			switch(browser)
 			{
@@ -71,7 +71,7 @@ public class Register2 {
 	}
 	
 	@Test
-	public void  mercuryregister()
+	public void  mercuryregister() throws InterruptedException
 	{
 		
 		WebElement firstname = driver.findElement(By.xpath("//input[@name=\"firstName\"]"));
@@ -156,10 +156,36 @@ public class Register2 {
 				System.out.println("Test Case Fail");
 			}
 			
-			//Thread.sleep(3000);
-			
-			//driver.quit();
+			Thread.sleep(5000);
 	
+	}
+	
+	@Test
+	public void continueForm()
+	{
+		//radio button
+		WebElement radiobtn = driver.findElement(By.xpath("//input[@value='oneway']"));
+		radiobtn.click();
+		
+		//Dropdown
+		Select passenger = new Select(driver.findElement(By.xpath("//select[@name='fromMonth']")));
+	    passenger.deselectByValue("4");
+	    
+	    Select fromMonth = new Select(driver.findElement(By.xpath("//select[@name='passCount']")));
+	    fromMonth.deselectByValue("5");
+	    
+	    Select fromDay = new Select(driver.findElement(By.xpath("//select[@name='fromDay']")));
+	    fromDay.deselectByValue("5");
+	    
+	    Select arriving = new Select(driver.findElement(By.xpath("//select[@name='toPort']")));
+	    arriving.deselectByValue("Sydney");
+		
+	    Select toMonth = new Select(driver.findElement(By.xpath("//select[@name='toMonth']")));
+	    toMonth.deselectByValue("7");
+	    
+	    Select toDay = new Select(driver.findElement(By.xpath("//select[@name='toDay']")));
+	    toDay.deselectByValue("30");
+		
 	}
 	
 	@AfterTest
